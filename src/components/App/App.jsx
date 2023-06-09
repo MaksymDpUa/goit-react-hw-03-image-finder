@@ -2,7 +2,6 @@ import { Button } from 'components/Button/Button';
 import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 import { Searchbar } from 'components/Searchbar/Searchbar';
 import { Component } from 'react';
-import { MagnifyingGlass } from 'react-loader-spinner';
 import css from './App.module.css';
 
 export class App extends Component {
@@ -10,13 +9,6 @@ export class App extends Component {
     searchValue: '',
     page: 1,
     isShowLoadMore: false,
-    isLoading: false,
-  };
-
-  handleIsLoading = () => {
-    this.setState(prevState => {
-      return { isLoading: !prevState.isLoading };
-    });
   };
 
   showBtn = () => {
@@ -33,18 +25,16 @@ export class App extends Component {
 
   handleLoadMore = nextPage => {
     this.setState({ page: nextPage });
-   };
+  };
 
   render() {
     return (
       <div className={css.App}>
         <Searchbar onSubmit={this.onSubmit} resetPage={this.resetPage} />
-        {this.state.isLoading && <MagnifyingGlass />}
         <ImageGallery
           searchValue={this.state.searchValue}
           page={this.state.page}
           showBtn={this.showBtn}
-          handleIsLoading={this.handleIsLoading}
         />
         {this.state.isShowLoadMore && (
           <Button
