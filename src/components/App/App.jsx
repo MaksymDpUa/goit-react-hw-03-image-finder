@@ -26,7 +26,6 @@ export class App extends Component {
 
   handleLoadMore = nextPage => {
     this.setState({ page: nextPage });
-    console.log(this.state.page);
   };
 
   render() {
