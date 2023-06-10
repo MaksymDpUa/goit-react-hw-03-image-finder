@@ -16,9 +16,7 @@ export class ImageGallery extends Component {
     isLoading: false,
   };
 
-    componentDidUpdate(prevProps, prevState) {
-      
-
+  componentDidUpdate(prevProps, prevState) {
     if (
       prevProps.searchValue === this.props.searchValue &&
       prevProps.page === this.props.page
@@ -29,6 +27,7 @@ export class ImageGallery extends Component {
     }
 
     this.handleIsLoading();
+
     getImage(this.props.searchValue, this.props.page)
       .then(resp => {
         if (resp.ok) {
@@ -42,7 +41,7 @@ export class ImageGallery extends Component {
         this.setState({ images: [...this.state.images, ...images.hits] });
       })
       .catch(err => alert(err))
-      .finally(this.handleIsLoading());
+      .finally(() => this.handleIsLoading());
   }
 
   openModal = (largeImage, alt) => {
@@ -71,20 +70,19 @@ export class ImageGallery extends Component {
             largeImage={largeImage}
           />
         )}
-        {isLoading && <MagnifyingGlass />}
         {isImages > 0 && (
           <ul className={css.ImageGallery}>
             <ImageGalleryItem images={images} openModal={this.openModal} />
           </ul>
         )}
+        {isLoading && <MagnifyingGlass />}
       </>
     );
   }
 }
 
-
 ImageGallery.propTypes = {
-    searchValue: PropTypes.string,
-    page: PropTypes.number,
-    showBtn: PropTypes.func,
-}
+  searchValue: PropTypes.string,
+  page: PropTypes.number,
+  showBtn: PropTypes.func,
+};

@@ -9,6 +9,7 @@ export class App extends Component {
     searchValue: '',
     page: 1,
     isShowLoadMore: false,
+    totalPages: 13,
   };
 
   showBtn = () => {
@@ -25,6 +26,7 @@ export class App extends Component {
 
   handleLoadMore = nextPage => {
     this.setState({ page: nextPage });
+    console.log(this.state.page);
   };
 
   render() {
@@ -36,12 +38,13 @@ export class App extends Component {
           page={this.state.page}
           showBtn={this.showBtn}
         />
-        {this.state.isShowLoadMore && (
-          <Button
-            handleLoadMore={this.handleLoadMore}
-            curentPage={this.state.page}
-          />
-        )}
+        {this.state.isShowLoadMore &&
+          this.state.page < this.state.totalPages && (
+            <Button
+              handleLoadMore={this.handleLoadMore}
+              curentPage={this.state.page}
+            />
+          )}
       </div>
     );
   }
