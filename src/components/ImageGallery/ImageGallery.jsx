@@ -75,7 +75,7 @@ export class ImageGallery extends Component {
             <ImageGalleryItem images={images} openModal={this.openModal} />
           </ul>
         )}
-        {isLoading && <MagnifyingGlass />}
+        {isLoading && <div className={css.loader}><MagnifyingGlass /></div>}
       </>
     );
   }
