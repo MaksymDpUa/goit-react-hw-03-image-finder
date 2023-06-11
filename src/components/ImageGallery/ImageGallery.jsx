@@ -26,7 +26,11 @@ export class ImageGallery extends Component {
     if (prevProps.searchValue !== this.props.searchValue) {
       this.setState({ images: [] });
     }
-
+    if (this.state.totalHits === this.state.images.length) {
+      this.props.hideBtn();
+      alert('Sorry, there are no more images for your request.');
+      return;
+    }
     this.handleIsLoading();
 
     getImage(this.props.searchValue, this.props.page)
@@ -47,10 +51,6 @@ export class ImageGallery extends Component {
       .catch(err => alert(err))
       .finally(() => {
         this.handleIsLoading();
-        if (this.state.totalHits === this.state.images.length) {
-          this.props.hideBtn();
-          alert('Sorry, there are no more images for your request.');
-        }
       });
   }
 
