@@ -12,21 +12,15 @@ export class App extends Component {
     totalPages: 13,
   };
 
-  showBtn = () => {
-    this.setState({ isShowLoadMore: true });
-  };
+  showBtn = () => this.setState({ isShowLoadMore: true });
+  
+  hideBtn = ()=> this.setState({ isShowLoadMore: false });  
+  
+  resetPage = () => this.setState({ page: 1 });
 
-  resetPage = () => {
-    this.setState({ page: 1 });
-  };
+  onSubmit = searchValue => this.setState({ searchValue });
 
-  onSubmit = searchValue => {
-    this.setState({ searchValue });
-  };
-
-  handleLoadMore = nextPage => {
-    this.setState({ page: nextPage });
-  };
+  handleLoadMore = nextPage => this.setState({ page: nextPage });
 
   render() {
     return (
@@ -36,6 +30,7 @@ export class App extends Component {
           searchValue={this.state.searchValue}
           page={this.state.page}
           showBtn={this.showBtn}
+          hideBtn={this.hideBtn}
         />
         {this.state.isShowLoadMore &&
           this.state.page < this.state.totalPages && (

@@ -14,6 +14,7 @@ export class ImageGallery extends Component {
     largeImage: '',
     alt: '',
     isLoading: false,
+    totalHits: null,
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -38,10 +39,19 @@ export class ImageGallery extends Component {
       })
       .then(images => {
         this.props.showBtn();
-        this.setState({ images: [...this.state.images, ...images.hits] });
+        this.setState({
+          images: [...this.state.images, ...images.hits],
+          totalHits: images.totalHits,
+        });
       })
       .catch(err => alert(err))
-      .finally(() => this.handleIsLoading());
+      .finally(() => {
+        this.handleIsLoading();
+        if (this.state.totalHits === this.state.images.length) {
+          this.props.hideBtn();
+          alert('Sorry, there are no more images for your request.');
+        }
+      });
   }
 
   openModal = (largeImage, alt) => {
@@ -75,7 +85,11 @@ export class ImageGallery extends Component {
             <ImageGalleryItem images={images} openModal={this.openModal} />
           </ul>
         )}
-        {isLoading && <div className={css.loader}><MagnifyingGlass /></div>}
+        {isLoading && (
+          <div className={css.loader}>
+            <MagnifyingGlass />
+          </div>
+        )}
       </>
     );
   }
