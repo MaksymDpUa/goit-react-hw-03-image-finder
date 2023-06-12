@@ -1,4 +1,3 @@
-import { Button } from 'components/Button/Button';
 import { ImageGallery } from 'components/ImageGallery/ImageGallery';
 import { Searchbar } from 'components/Searchbar/Searchbar';
 import { Component } from 'react';
@@ -35,14 +34,7 @@ export class App extends Component {
           hideBtn={this.hideBtn}
           handleLoadMore={this.handleLoadMore}
           curentPage={this.state.page}
-        />
-        {/* {this.state.isShowLoadMore &&
-          this.state.page < this.state.totalPages && (
-            <Button
-              handleLoadMore={this.handleLoadMore}
-              curentPage={this.state.page}
-            />
-          )} */}
+        />  
       </div>
     );
   }

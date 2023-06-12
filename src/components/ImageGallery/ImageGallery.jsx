@@ -16,33 +16,22 @@ export class ImageGallery extends Component {
     alt: '',
     isLoading: false,
     totalHits: null,
-    // page:1
   };
 
   componentDidUpdate(prevProps, prevState) {
     if (
-      prevProps.searchValue === this.props.searchValue
-      &&
+      prevProps.searchValue === this.props.searchValue &&
       prevProps.page === this.props.page
-      
     ) {
       console.log('2222222');
       return;
     }
     if (prevProps.searchValue !== this.props.searchValue) {
-      this.setState({
-        images: [],
-        // page: 1,
-      });
-    
+      this.setState({ images: [] });
     }
-    // if (this.state.totalHits === this.state.images.length) {
-    //   this.props.hideBtn();
-    //   alert('Sorry, there are no more images for your request.');
-    //   return;
-    // }
+
     this.handleIsLoading();
-// this.props.page
+
     getImage(this.props.searchValue, this.props.page)
       .then(resp => {
         if (resp.ok) {
@@ -72,7 +61,7 @@ export class ImageGallery extends Component {
     this.setState({ showModal: false });
   };
 
-    handleLoadMore = nextPage => this.setState({ page: nextPage });
+  handleLoadMore = nextPage => this.setState({ page: nextPage });
 
   handleIsLoading = () => {
     this.setState(prevState => {
@@ -102,7 +91,7 @@ export class ImageGallery extends Component {
             <MagnifyingGlass />
           </div>
         )}
-               {this.state.images.length > 0 &&
+        {this.state.images.length > 0 &&
           this.state.images.length < this.state.totalHits && (
             <Button
               handleLoadMore={this.props.handleLoadMore}
