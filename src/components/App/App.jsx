@@ -25,20 +25,24 @@ export class App extends Component {
   render() {
     return (
       <div className={css.App}>
-        <Searchbar onSubmit={this.onSubmit} resetPage={this.resetPage} />
+        <Searchbar onSubmit={this.onSubmit}
+          resetPage={this.resetPage}
+        />
         <ImageGallery
           searchValue={this.state.searchValue}
           page={this.state.page}
           showBtn={this.showBtn}
           hideBtn={this.hideBtn}
+          handleLoadMore={this.handleLoadMore}
+          curentPage={this.state.page}
         />
-        {this.state.isShowLoadMore &&
+        {/* {this.state.isShowLoadMore &&
           this.state.page < this.state.totalPages && (
             <Button
               handleLoadMore={this.handleLoadMore}
               curentPage={this.state.page}
             />
-          )}
+          )} */}
       </div>
     );
   }
