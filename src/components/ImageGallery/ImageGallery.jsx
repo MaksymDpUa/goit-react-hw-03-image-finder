@@ -23,7 +23,6 @@ export class ImageGallery extends Component {
       prevProps.searchValue === this.props.searchValue &&
       prevProps.page === this.props.page
     ) {
-      console.log('2222222');
       return;
     }
     if (prevProps.searchValue !== this.props.searchValue) {
