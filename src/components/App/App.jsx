@@ -8,7 +8,6 @@ export class App extends Component {
     searchValue: '',
     page: 1,
     isShowLoadMore: false,
-    totalPages: 13,
   };
 
   showBtn = () => this.setState({ isShowLoadMore: true });
